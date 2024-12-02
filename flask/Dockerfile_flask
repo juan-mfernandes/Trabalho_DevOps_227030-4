@@ -9,4 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 #COPY . .
 COPY app.py /app/
 
+#COPY TEST APP
+COPY test_app.py /app
+
 CMD ["flask", "run", "--host=0.0.0.0"]

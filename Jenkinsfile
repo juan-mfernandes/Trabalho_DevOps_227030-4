@@ -46,7 +46,7 @@ pipeline {
 	}
 	post { 
 		always {
-			junit 'report.xml' // #7 - Publica o resultado dos testes no Jenkins
+			junit '/app/report.xml' // #7 - Publica o resultado dos testes no Jenkins
 			cleanWs() // Limpa o worskpace após a execução
 		}	
 	}

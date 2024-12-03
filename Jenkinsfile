@@ -17,7 +17,7 @@ pipeline {
 		}
 		stage("Rodar Testes..."){
 			steps{
-				sh './venv/bin/pytest --junitxml=report.xml' //#3 - Busca e executa os teste presentes em arquivos test_
+				sh './venv/bin/pytest --junitxml=report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
 			}
 		}
 		stage("Build da aplicação..."){

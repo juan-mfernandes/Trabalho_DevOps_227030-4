@@ -27,7 +27,7 @@ pipeline {
 		}
 		stage("Rodar Testes..."){
 			steps{
-				sh 'docker exec -e FLASK_ENV=test trabalho-devops-flask-1 pytest test_app.py --junitxml=report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
+				sh 'docker exec -e FLASK_ENV=test trabalho-devops-flask-1 pytest test_app.py --junitxml=/reports/report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
 			}
 		}
 		stage("Validação de monitoramento"){
@@ -46,7 +46,7 @@ pipeline {
 	}
 	post { 
 		always {
-			junit '/app/report.xml' // #7 - Publica o resultado dos testes no Jenkins
+			junit 'report.xml' // #7 - Publica o resultado dos testes no Jenkins
 			cleanWs() // Limpa o worskpace após a execução
 		}	
 	}

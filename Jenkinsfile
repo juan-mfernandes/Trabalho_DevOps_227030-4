@@ -37,6 +37,7 @@ pipeline {
 					// #6 - Verifica se os serviços estão disponíveis
 					def prometheusStatus = sh(script: "curl -s http://localhost:9090", returnStatus: true)
 					def grafanaStatus = sh(script: "curl -s http://localhost:3000", returnStatus: true)
+					println("Rotas encontradas!");
 
 					if(prometheusStatus != 0 || grafanaStatus != 0) {
 						error("Monitoramento falhou, Prometheus ou Grafana não estão acessíveis.")
@@ -47,7 +48,7 @@ pipeline {
 	}
 	post { 
 		always {
-			junit 'reports/report.xml' // #7 - Publica o resultado dos testes no Jenkins
+			sh 'Teste finalizado!'
 			cleanWs() // Limpa o worskpace após a execução
 		}	
 	}

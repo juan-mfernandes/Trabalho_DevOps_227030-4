@@ -1,6 +1,14 @@
 version: '3.7'
 
+networks:
+  mynetwork:
+    driver: bridge
+
 services:
+  jenkins: 
+    networks:
+      - mynetwork
+
   flask:
     build:
       context: ./flask
@@ -18,6 +26,8 @@ services:
       dockerfile: Dockerfile_mariadb
     ports:
       - "3306:3306"
+    networks:
+      - mynetwork
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: school_db

@@ -15,11 +15,6 @@ pipeline {
 				sh './venv/bin/pip install -r flask/requirements.txt' //#2 - Instala dependências necessárias presentes no arquivo requirements.txt
 			}
 		}
-		stage("Rodar Testes..."){
-			steps{
-				sh './venv/bin/pytest flask/test_app.py --junitxml=report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
-			}
-		}
 		stage("Build da aplicação..."){
 			steps{
 				sh 'docker-compose --build' //#4 - Cria a imagens Docker para todos os serviços presentes no arquivo docker-compose.yml
@@ -28,6 +23,11 @@ pipeline {
 		stage("Deploy da aplicação..."){
 			steps{
 				sh 'docker-compose up -d' //#5 - Uso da opção -d ou --detach para subir containers em segundo plano  
+			}
+		}
+		stage("Rodar Testes..."){
+			steps{
+				sh './venv/bin/pytest flask/test_app.py --junitxml=report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
 			}
 		}
 		stage("Validação de monitoramento"){

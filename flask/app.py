@@ -1,4 +1,5 @@
 # Código principal do Flask (app.py)
+import os
 import time
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -15,8 +16,10 @@ metrics = PrometheusMetrics(app)
 # Configuração da chave secreta para sessões
 app.config['SECRET_KEY'] = 'minha_chave_secreta_super_secreta'  # Substitua por uma chave segura
 
-# Configuração do banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root_password@mariadb/school_db'
+if os.getenv('FLASK_ENV') == 'test':
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root_password@mariadb/school_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializar o banco de dados e o AppBuilder

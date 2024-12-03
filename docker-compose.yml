@@ -29,6 +29,7 @@ services:
     networks:
       - mynetwork
     environment:
+      MYSQL_HOST: mariadb
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: school_db
       MYSQL_USER: flask_user

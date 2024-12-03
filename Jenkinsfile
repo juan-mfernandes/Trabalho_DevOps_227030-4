@@ -48,7 +48,6 @@ pipeline {
 	}
 	post { 
 		always {
-			sh 'echo "Teste finalizado"'
 			cleanWs() // Limpa o worskpace após a execução
 		}	
 	}

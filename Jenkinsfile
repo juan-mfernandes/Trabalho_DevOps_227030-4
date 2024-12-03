@@ -28,7 +28,7 @@ pipeline {
 		stage("Rodar Testes..."){
 			steps{
 				sh 'mkdir -p reports'
-				sh 'docker exec -e FLASK_ENV=test trabalho-devops-flask-1 pytest test_app.py --junitxml=./reports/report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
+				sh 'docker exec -e FLASK_ENV=test trabalho-devops-flask-1 pytest test_app.py --junitxml=/app/reports/report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
 			}
 		}
 		stage("Validação de monitoramento"){

@@ -12,12 +12,12 @@ pipeline {
 		stage("Configura o ambiente..."){ 
 			steps{
 				sh 'python3 -m venv venv' //#2 - Cria o ambiente virtual para rodar arquivos .py
-				sh './venv/bin/pip install -r requirements.txt' //#2 - Instala dependências necessárias presentes no arquivo requirements.txt
+				sh './venv/bin/pip install -r flask/requirements.txt' //#2 - Instala dependências necessárias presentes no arquivo requirements.txt
 			}
 		}
 		stage("Rodar Testes..."){
 			steps{
-				sh './venv/bin/pytest --junitxml=report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
+				sh './venv/bin/pytest flask/test_app.py --junitxml=report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
 			}
 		}
 		stage("Build da aplicação..."){

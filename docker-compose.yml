@@ -1,14 +1,8 @@
-version: '3.7'
-
 networks:
   mynetwork:
     driver: bridge
 
 services:
-  jenkins: 
-    networks:
-      - mynetwork
-
   flask:
     build:
       context: ./flask

@@ -15,7 +15,7 @@ services:
       context: ./mariadb
       dockerfile: Dockerfile_mariadb
     ports:
-      - "3306:3306"
+      - "3306:3307"
     environment:
       MYSQL_ROOT_PASS WORD: root_password
       MYSQL_DATABASE: school_db

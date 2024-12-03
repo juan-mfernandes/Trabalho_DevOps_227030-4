@@ -11,7 +11,8 @@ pipeline {
 		}
 		stage("Configura o ambiente..."){ 
 			steps{
-				sh 'python3 -m venv venv' //#2 - Cria o ambiente virtual para rodar arquivos .py
+				sh 'python3 -m venv venv'
+				sh 'python3 -m pip install --upgrade pip'//#2 - Cria o ambiente virtual para rodar arquivos .py
 				sh './venv/bin/pip install -r flask/requirements.txt' //#2 - Instala dependências necessárias presentes no arquivo requirements.txt
 			}
 		}

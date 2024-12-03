@@ -27,6 +27,7 @@ pipeline {
 		}
 		stage("Rodar Testes..."){
 			steps{
+				sh 'mkdir -p reports'
 				sh 'docker exec -e FLASK_ENV=test trabalho-devops-flask-1 pytest test_app.py --junitxml=/reports/report.xml' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
 			}
 		}
@@ -46,7 +47,7 @@ pipeline {
 	}
 	post { 
 		always {
-			junit 'report.xml' // #7 - Publica o resultado dos testes no Jenkins
+			junit '/reports/report.xml' // #7 - Publica o resultado dos testes no Jenkins
 			cleanWs() // Limpa o worskpace após a execução
 		}	
 	}

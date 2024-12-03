@@ -9,6 +9,12 @@ pipeline {
 				checkout scm // #1 - Clona o repositório configurado na pipeline
 			}
 		}
+		stage("Configura o ambiente..."){ 
+			steps{
+				sh 'python3 -m venv venv'//#2 - Cria o ambiente virtual para rodar arquivos .py
+				sh './venv/bin/pip install -r flask/requirements.txt' //#2 - Instala dependências necessárias presentes no arquivo requirements.txt
+			}
+		}
 		stage("Build da aplicação..."){
 			steps{
 				sh 'docker-compose build' //#4 - Cria a imagens Docker para todos os serviços presentes no arquivo docker-compose.yml
@@ -17,12 +23,6 @@ pipeline {
 		stage("Deploy da aplicação..."){
 			steps{
 				sh 'docker-compose up -d' //#5 - Uso da opção -d ou --detach para subir containers em segundo plano  
-			}
-		}
-		stage("Configura o ambiente..."){ 
-			steps{
-				sh 'python3 -m venv venv'//#2 - Cria o ambiente virtual para rodar arquivos .py
-				sh './venv/bin/pip install -r flask/requirements.txt' //#2 - Instala dependências necessárias presentes no arquivo requirements.txt
 			}
 		}
 		stage("Rodar Testes..."){

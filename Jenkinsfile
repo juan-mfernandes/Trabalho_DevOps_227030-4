@@ -27,7 +27,7 @@ pipeline {
 		}
 		stage("Rodar Testes..."){
 			steps{
-				sh 'docker exec -it trabalhodevops-flask-1 python test_app.py' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
+				sh 'docker exec -it trabalho-devops-flask-1 python test_app.py' //#3 - Busca e executa os teste presentes em arquivos test_ e grava logs do teste em um arquivo xml
 			}
 		}
 		stage("Validação de monitoramento"){

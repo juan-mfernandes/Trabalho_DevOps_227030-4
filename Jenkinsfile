@@ -11,7 +11,7 @@ pipeline {
 		}
 		stage("Build da aplicação..."){
 			steps{
-				sh 'docker-compose --build' //#4 - Cria a imagens Docker para todos os serviços presentes no arquivo docker-compose.yml
+				sh 'docker-compose build' //#4 - Cria a imagens Docker para todos os serviços presentes no arquivo docker-compose.yml
 			}
 		}
 		stage("Deploy da aplicação..."){

@@ -29,3 +29,12 @@ docker-compose up --build
 - Flask API: ```http://localhost:5000```
 - Grafana: ```http://localhost:3000```
 
+### **4. Configuração do Dashboard no Grafana**
+- Acesse o Grafana em ```http://localhost:3000```
+- Faça login (usuário: admin, senha: admin).
+- Importe o arquivo JSON de dashboard localizado em grafana/dashboards/mariadb_dashboard.json.
+- Certifique-se de que as métricas estão sendo exibidas corretamente:
+
+### **Imagem do Dashboard**
+
+
